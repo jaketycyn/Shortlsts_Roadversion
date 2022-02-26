@@ -1,9 +1,16 @@
-
+import { useEffect } from "react";
 
 const Dashboard = () => {
-  return (
-    <h1>Dashboard</h1>
-  )
-}
+  const fetchData = async () => {
+    const response = await fetch("/api/v1");
+    const data = await response.json();
+    console.log(data);
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-export default Dashboard
+  return <h1>Dashboard</h1>;
+};
+
+export default Dashboard;
