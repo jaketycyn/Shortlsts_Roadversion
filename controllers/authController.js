@@ -12,6 +12,10 @@ const registerUser = async (req, res, next) => {
   res.send("registerUser");
 };
 const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    throw new BadRequestError("Please provide all values");
+  }
   res.send("loginUser");
 };
 const updateUser = async (req, res) => {
