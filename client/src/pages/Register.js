@@ -16,16 +16,20 @@ const initialState = {
 const Register = () => {
   const navigate = useNavigate();
   const [values, setValues] = useState(initialState);
-  const { user, isLoading, showAlert, displayAlert, registerUser } =
+  const { user, isLoading, showAlert, displayAlert, registerUser, setupUser } =
     useAppContext();
+
+  const toggleMember = () => {
+    setValues({ ...values, isMember: !values.isMember });
+  };
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
-
   const onSubmit = (e) => {
     e.preventDefault();
     const { name, email, password, isMember } = values;
+
     if (!email || !password || (!isMember && !name)) {
       displayAlert();
       return;
@@ -33,10 +37,20 @@ const Register = () => {
 
     const currentUser = { name, email, password };
     if (isMember) {
-      console.log("already a member");
+      setupUser({
+        currentUser,
+        endPoint: "login",
+        alertText: "Login Succesful! Redirecting...",
+      });
     } else {
-      registerUser(currentUser);
+      setupUser({
+        currentUser,
+        endPoint: "register",
+        alertText: "Register Succesful! Redirecting...",
+      });
     }
+
+    console.log(values);
   };
 
   useEffect(() => {
@@ -46,10 +60,6 @@ const Register = () => {
       }, 3000);
     }
   }, [user, navigate]);
-
-  const toggleMember = () => {
-    setValues({ ...values, isMember: !values.isMember });
-  };
 
   return (
     <Wrapper className="full-page">

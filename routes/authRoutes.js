@@ -5,10 +5,10 @@ import {
   updateUser,
 } from "../controllers/authController.js";
 
-const router = express.Router();
+const authRouter = express.Router();
 
-router.route("/registerUser").post(registerUser);
-router.route("/loginUser").post(loginUser);
-router.route("/updateUser").patch(updateUser);
+authRouter.route("/register").post(registerUser);
+authRouter.route("/login").post(loginUser);
+authRouter.route("/updateUser").patch(updateUser);
 
-export default router;
+export default authRouter;

@@ -1,6 +1,5 @@
-import cors from "cors";
+//! removed cors for now
 import express from "express";
-
 import morgan from "morgan";
 
 const app = express();
@@ -25,29 +24,28 @@ import errorHandlerMiddleware from "./middleware/error-handler.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// only when ready to deploy
 app.use(express.static(path.resolve(__dirname, "./client/build")));
 
-if (process.env.NODE_ENV !== "production") {
-  app.use(morgan("dev"));
-}
+// if (process.env.NODE_ENV !== "production") {
+//   app.use(morgan("dev"));
+// }
 
-app.use(cors());
 app.use(express.json());
 // routes
 
 // error middle-wares
 
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-});
+// !has to be commented out when dev but comment in when building
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+// });
 
 app.get("/", (req, res) => {
   res.json({ msg: "Welcome" });
 });
 
 app.get("/api/v1", (req, res) => {
-  res.json({ msg: "Welcome" });
+  res.json({ msg: "Api V1" });
 });
 
 app.use("/api/v1/auth", authRouter);
