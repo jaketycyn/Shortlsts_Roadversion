@@ -40,13 +40,9 @@ app.use(express.json());
 //   res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 // });
 
-app.get("/", (req, res) => {
-  res.json({ msg: "Welcome" });
-});
+app.get("/", (req, res) => {});
 
-app.get("/api/v1", (req, res) => {
-  res.json({ msg: "Api V1" });
-});
+app.get("/api/v1", (req, res) => {});
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/lists", listsRouter);
