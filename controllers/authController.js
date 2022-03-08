@@ -19,7 +19,10 @@ const registerUser = async (req, res, next) => {
 
     const token = user.createJWT();
 
-    res.status(StatusCodes.CREATED).json({ user, token });
+    res.status(StatusCodes.CREATED).json({
+      user: { email: user.email, name: user.name },
+      token,
+    });
   } catch (error) {
     next(error);
   }
