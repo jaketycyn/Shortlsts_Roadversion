@@ -1,12 +1,6 @@
 import {
   DISPLAY_ALERT,
   CLEAR_ALERT,
-  REGISTER_USER_BEGIN,
-  REGISTER_USER_SUCCESS,
-  REGISTER_USER_ERROR,
-  LOGIN_USER_BEGIN,
-  LOGIN_USER_SUCCESS,
-  LOGIN_USER_ERROR,
   SETUP_USER_BEGIN,
   SETUP_USER_SUCCESS,
   SETUP_USER_ERROR,
@@ -27,56 +21,6 @@ const reducer = (state, action) => {
       showAlert: false,
       alertType: "",
       alertText: "",
-    };
-  }
-  if (action.type === REGISTER_USER_BEGIN) {
-    return {
-      ...state,
-      isLoading: true,
-    };
-  }
-  if (action.type === REGISTER_USER_SUCCESS) {
-    return {
-      ...state,
-      isLoading: false,
-      user: action.payload.user,
-      showAlert: true,
-      alertType: "success",
-      alertText: "User Created! Redirecting ...",
-    };
-  }
-  if (action.type === REGISTER_USER_ERROR) {
-    return {
-      ...state,
-      isLoading: false,
-      showAlert: true,
-      alertType: "danger",
-      alertText: action.payload.msg,
-    };
-  }
-  if (action.type === LOGIN_USER_BEGIN) {
-    return {
-      ...state,
-      isLoading: true,
-    };
-  }
-  if (action.type === LOGIN_USER_SUCCESS) {
-    return {
-      ...state,
-      isLoading: false,
-      user: action.payload.user,
-      showAlert: true,
-      alertType: "success",
-      alertText: "Login Successful! Redirecting ...",
-    };
-  }
-  if (action.type === LOGIN_USER_ERROR) {
-    return {
-      ...state,
-      isLoading: false,
-      showAlert: true,
-      alertType: "danger",
-      alertText: action.payload.msg,
     };
   }
 
