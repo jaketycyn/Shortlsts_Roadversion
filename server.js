@@ -21,6 +21,7 @@ import listsRouter from "./routes/listsRoutes.js";
 // middleware
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
+import authenticateUser from "./middleware/auth.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -40,12 +41,10 @@ app.use(express.json());
 //   res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 // });
 
-app.get("/", (req, res) => {});
-
 app.get("/api/v1", (req, res) => {});
 
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/lists", listsRouter);
+app.use("/api/v1/lists", authenticateUser, listsRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
