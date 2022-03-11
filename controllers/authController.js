@@ -46,8 +46,11 @@ const loginUser = async (req, res) => {
   //   throw new UnAuthenticatedError("Invalid Credentials");
   // }
   res.status(StatusCodes.OK).json({ user });
+
+  console.log(req.user);
 };
 const updateUser = async (req, res) => {
+  console.log(req.user);
   res.send("updateUser");
 };
 

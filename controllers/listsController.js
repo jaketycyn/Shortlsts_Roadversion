@@ -8,13 +8,9 @@ const createList = async (req, res) => {
   if (!title) {
     throw new BadRequestError("Please provide a title for your list");
   }
-
-  console.log("req.user");
-  console.log(req.user);
-  //req.body.createdBy = req.user._id;
-
-  //   const list = await UserCustomList.create(req.body);
-  //   res.status(StatusCodes.CREATED).json({ list });
+  req.body.createdBy = req.user.userId;
+  const userList = await UserCustomList.create(req.body);
+  res.status(StautsCodes.CREATED).json({ userList });
 };
 
 const getAllLists = async (req, res) => {
